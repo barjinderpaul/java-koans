@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - equality",
+            "request": "launch",
+            "mainClass": "com.company.equality"
+        }
+    ]
+}

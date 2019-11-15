@@ -1,4 +1,15 @@
 class strings {
+
+
+    static void checkTryCatch() {
+        System.out.println("Checking String.format Exception");
+        try {
+            String.format("%s %s %s", "a", "b");
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + " " + e.getClass());
+        }
+        System.out.println("Ending checking String.format Exception");
+    }
     public static void main(String[] args) {
         String s = "abc";
         System.out.println(s.getClass());
@@ -54,6 +65,8 @@ class strings {
         str.setCharAt(index,'A');
         System.out.println(str);
 
+
+        checkTryCatch();
 
     }
 }
