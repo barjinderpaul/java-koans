@@ -1,0 +1,350 @@
+
+================== SOLID Principles ========================= >
+
+https://dzone.com/articles/the-solid-principles-in-real-life
+Solid principles;
+S - Single responsibilty principle; 
+	A class should do only one task, and a class should have only one reason to change.
+	A class is opening a database, running queries - this is not good;
+
+O - open/closed modification;
+	A class should be open for extension not for modification
+	Example - if we are using switch case, and we want to add some feature, we will have to change/add to the switch cases, which is modification;
+	Example - A phone's playstore extends capabilities for functionalities and does not modifies camera or anything
+	Example - In service class, we can add more queries;	
+
+L - Liskov substitution principle;
+	based to inheritance; 
+	every subtype must be replaceable with the super type; This requires all subclasses to behave the same way as parent class.
+	that is, we can replace the object with the subtype and it should not disturb the functionality of the application.
+
+I - Interface Segregation principle;
+	based on interfaces;
+	Any interface should be small, preicse and not contain too many of the declarations;
+	Example - Example of a menu, soup of the day, as soup can change every day, we need not to print new menus everyday;
+	2 - A client is using an API, and it contains very large amount of interfaces , any client will not want to implement all.
+	Example - A Bank interface which is implented by a Bank should not have a large amount of functions; it should only contain the least basic needs
+	that is needed by every bank;
+
+D - Dependency Inversion;
+	Based on dependency injection principle;
+	Example - The coffee machine example.
+	It states that our code should be more abstract rather than concrete.
+	Example Java streams -> We can pass anything to them, they will do the processing; 
+
+
+in more depth - https://stackify.com/solid-design-liskov-substitution-principle/
+
+====================================== Reference types ==================; 
+Reference types - we can create : List<String> lst = new Array<List>(); 1000 object example 
+		
+Loosely coupled code vs tightly coupled code;
+loosely -> Work interface, manager -> workers;
+tightly -> manager class uses object of -> workers -> discards the concept of open closed principle;
+	
+
+============ Inheritance ==========
+Why inheritance instead of object creation -> Runtime polymorphism in classes -> if we have a base class, which is being level-extended by many classes;
+If we want to access methods of every class, we have to make the object of every class; thus, creating more and more memory;
+Instead of this, what we can do is that if we had them extended to the same class, 
+
+Encapsulation - hides data fields , keeps our fields safe from invalid values;
+
+
+---------------- .equals() vs  == -----------------
+
+.equals() if not overridden checks whether the invoking object is of same reference to the object that is passed as an argument;
+In strings, it checks value
+if overriden in the implementing class, it can check value of all as well.
+== checks if the operands on the lhs and rhs have same address same or not if they are objects and values if primitives;
+
+
+================= Class and object ===============
+
+A class is a user-defined blueprint or a prototype from which objects are created. It represents a set of properties and methods which will be common to all objects.
+Object is an instance of the class.
+When we created an object, a reference to the class is created, memory is allocated only when we use the new() method, and object memory is created on the heap.
+Change value of objects by use of wrapper classes.
+Encapsulation is data hiding where abstraction is implementation hiding;
+
+Classes can be static in java but they have to nested, we cannot have the top class to be static.	
+non-static nested class is called inner class.
+we use inner classes to logically group classes and interfaces in one place so that the code becomes more readable 
+Anonymous inner class is used to override the methods of the outer class.
+we cannot have static methods in nested classes because an inner class in implicitly associated with an object of it's outer class
+
+Object class is in java.lang.Object can store any type of data type;
+
+Instance variables are the variables which are declared in the class.
+Static variables / class variables are the variables which are decleared with the static keyword.
+Local variables are the variables which are defined in a scope like a method.
+
+Static blocks are executed directly when the class is loaded by the JVM i.e., prior to the calling of the constructor;
+when there are static block, local block/initialized block and constructor as well, the scope of execution goes in the following way :
+Static block -> local block/initializer block -> constructor();
+Static blocks are mainly used for initialising the static fields and variables.
+Static blocks run only once during the period of execution;
+Initializer blocks run everytime whenever an object is created.
+
+Static binding vs dynamic binding -> static binding is known at compile time; dynamic binding is known at run time;
+static bining is better performant than dynamic binding.
+example of dynamic binding is overriding.
+
+Java is not a purely OOPs based language because it contains the use of primitive data types.
+If a language has to be fully Object oriented, it has do everything in objects.
+
+We cannot use multiple inheritance in classes due to the diamond problem
+we make methods final in inheritance if we want them not to be overridden by the sub class.
+Any class declared with final cannot be inherited.
+
+If we use inner classes and then we extend it to the outer class, then we can override the private method declared.
+
+
+-[[[[[[[[]]]]]]]]
+Java does not need forward declaration because these are directly recognized from source files. -> it is not necessary to have a class/method above the point where it is being called. Remember; it is mandatory in cpp.
+
+Widening primitive conversion in java -> when we dont have operations applying on same data types -> the type of the small datatype is automatically applied to the large datatype
+If both are char, and we apply + operation, both variables will be converted to int.
+
+
+========== Packages ================
+Packages in java ->
+mechanism to encapsulate a group of classes, subpackages and interfaces.
+Gives leverage to have same class name over two different packages.
+protected fields are available only in same package and in subclasses only., can be accessed in different package subclass.
+default fields are available only in same package only and in subclasses, cannot be accessed in different package subclass.
+
+Function currying -> is a mechanism to break functions with many arguments to functions with one argument. i.e., breaks higher order functions to small cascaded functions.
+
+================== Functional interfaces and lamda =================================
+Function interface -> java.util.function -> has many interfaces which can be applied with the help of lambda.
+introduced in java8, used for functional programming;
+has methods like -> apply, addThen():will apply function after apply, compose():will apply function before apply and identify();
+used with lambda expressions.
+Function<argumentType, returnType> functionName = a->a/2.0;(operation to perform);
+Function<Integer, Double> half = a->a/2.0;
+System.out.println(half.apply(10)); //output = 5.0;
+
+-[[[[[[[[[[[[]]]]]]]]]]]
+The main function is the entry point of the JVM to the program.	
+Role of static before fields and methods is to make them class variables and class methods and which can be used without creating a new object.
+
+Covariant types -> After jdk5.0, we were given the opportunity to have different return types of the method which is going to get override.
+but the return type of the subclass must be the subtype of the return type of the parent class.
+
+Vector v/s array list;
+vector is thread-safe and synchronized where arraylist is not. Many threads can access same arraylist at once in a multi-threaded environment.
+HashMap v/s HashTable;
+HashTable is thread-safe and synchronized where HashMap is not.
+HashTable does not allow any null key or values whereas HashMap allows 1 null key and various null values.
+
+ArrayList and HashMap can be made synchronized with Collections.synchronized(new ArrayList());
+synchronized(list){
+	// here display the contents of the list in a synchronized manner.
+}
+
+
+
+========================= String, String Buffer and String builder ================================>
+
+String = immutable objects;
+StringBuffer = mutable object, default allocated size = 16; thread-safe- synchronized; 
+StringBuilder = introduced inn java5;faster ; not asynchronized; not thread-safe - faster as not thread-safe;
+
+String Tokenizer class is used to make tokens out of a string based on a delimiter
+StringJoiner class is used to join strings/arrays based on some delimeter;
+
+========== Arrays class ==========
+Arrays is a class and cannot act like an data type; like we have int a[] = {1,2,3};
+Arrays class is used for applying methods on simple arrays like asList(), toString();
+
+-[[[[[[[[[[[]]]]]]]]]]]
+Jagged arrays are those arrays, in which each member array is of different size.	
+
+new() vs newInstance();
+new() is used when we know which object we want to create at compile time.
+newInstance() is used when we do not which object will be created at runtime. ; it is created like Object obj = Class.forName("the class name here").newInstance();
+Class.forName() will return the Class object on which we will be calling newInstance();
+
+
+instanceOf vs isInstance()
+instanceOf works only with objects known at compile time;
+isInstance() works with objects known at compile time as well as run time. By runtime -> Class.forName("class name").isInstance("object name");
+
+
+We can use Pair in java as well, it is included in org.javatuples.Pair;
+
+transient keyword is used when we do not want to serialize a variable; that variable may be private or related in such a way that we do not want to store it.
+the variables alongside which transient keyword is used are converted to default value whenever they are being serialized.
+
+
+--------------------------------------->  Generics <------------------------------------------
+As collections take parameter/input as Object and return values as Object only, so they can take any type of value while inserting data in collection; which is not good.
+Consequences are shown at runtime; So, generics were added to force type-safety at compile time only.
+
+Generics was added to provide compile-time-checking to remove ClassCastException, where ClassCastException is when we try to insert invalid type arguments in a collection;
+We can use generics with classes as well which promotes us to reuse the already existing code.
+class A<T>{
+	T obj;
+	A(T obj){
+		this.obj = obj;
+	}
+}
+
+Why generics ?
+Code reuse -> Write method class, once and use it for any type.
+Generics make errors to appear at compile time, rather at run time. 
+example -> ArrayList alist = new ArrayList();
+		   If we do alist.add(1);
+		   			alist.add("12"); the compiler allows this
+
+		   			String s1 = (String )alist.get(0); //will throw a runtime exception : ClassCastException;
+
+ArrayList<Integer> integerList = new ArrayList<>();
+This is only possible from java7, before that versions, it will not compile.
+ArrayList<Integer> integerList = new ArrayList<Integer>() will compile in all those.
+<> this is known as diamond operator;
+
+Generics are compatible with method, classes, interfaces
+Generics are not compaitible with exceptions, primitive types, cannot instantitate, cannot create static fields;
+
+Type erasure -> The generated byte code is same whether we generate the class with the use of generics or not. Where it benefits is that, extra load is not put on the JVM,
+also the bytecode is backward compatible with previous version before Java5.
+
+
+======================Assertions==================-> 
+Allows testing the correctness of any assumptions made by the programmer.
+ASsertions are basically used to check logically impossible situations.	
+
+=====================Annotations=================================
+are used to provide supplementation information about a program; 
+THey are not simply comments, they can change the situation whether the program will even compile or not;
+They also provide metadata for the variables, other fields and methodologies.
+
+============================ Lambda expressions ==================:
+Lamda function or expression are simply anonymous functions;
+Lambda expressions were introduced to make the code more readable;
+These only work in functional interfaces.
+Functional interfaces(SAM interfaces : Single Abstract Method interfaces) are those interfaces which only contain only 1 abstract method.
+Using lamda expression with functional interfaces :
+
+interface fun1 {
+	public void show();
+}
+
+class Lambda {
+	public static void main(String args[]){
+		fun1 f = ()->System.out.println("hello, world");
+		f.show();
+	}
+}
+
+Various default functional interface are already defined in java.util.function;	
+Lambda expressions make the code small as well;
+
+
+===================================Streams API ==================================
+Java stream API is an API which provides a mechanism for processing a set of data in various ways which may include filtering, transformation or any other operation.
+
+was introduced so that we can process collections of objects easily.
+Stream is not a data structure, it just takes a collection as an input, processes it and gives the option to even return them.
+It does not change the original data structure and can apply operations in pipeline as well.
+Disadvantage = if we want to find min and max with only running loop 1;
+in streams, we have to do twice;
+in for loop, we can do it only once.
+
+
+
+=================== COPY ===========================
+
+Shallow copy : In shallow copy, if we talk about primitive types, the value will be copied to the new variables;
+								if we talk about reference types, another reference will be created which will refer to the same object,
+								all properties will be copied but if we change the new object, original object will affected as well.
+
+Deep copy : In deep copy, the reference is not created, instead a new object is created with the same properties with clone() method;
+							Condition is that , whichever class'/parent class object is being created/clones it must implement Cloneable interface/
+
+						Another way to deep copy is that, we can use the copy constructor but the disadvantage is that we have to reinitialize all the fields again.
+
+
+
+-------------> Threads <------------------;
+Threads is a lightweight process;
+A process can contain many threads.
+
+Multi threading - > In multithreading, idea is to break a process to many threads such that code execution becomes parallel and we 
+can use our multi-core processors to their full extent;
+
+Threads are faster than processes and share the same code space, dependent on each other;
+processes are independent of each other and does not share any resources, have their own program counter;
+Context switch time is more for processes than threads.
+
+Context switching is the storing of current state of a process so that it can be executed later when needed.
+
+Runnable is a functional interface which is to be implemented by a class whose instances are intended to be executed by a thread.
+Runnable interface contains only the run method();
+Whenever a thread class' object is created, and whenever it is started, it runs the run method of the Runnable interface.
+Thread t = new Thread(new ClassWhichImplementsRunnable());
+
+If we donot override the run(), the program will not do anything.
+Order of execution goes like this :
+We instantiate the thread class, in the thread contructor we pass the object of the class which implements the Runnable interface and overrides the run method of it.
+then with the object of the class, we call the objectName.start() method and the start() method intenally calls the run() method of the Runnable class which we have overloaded;
+
+Whenever we start the main program, a thread named as main is automatically created; every other thread that we make is a child of that thread;
+
+Thread safety in java is a process to make our program safe in a multithreaded environment as the same data can be accessed by multiple times by the same thread, the 
+data can be inconsistent; So, to make the data consistent, we use thread safety;
+Thread safety can be achieved by many ways :
+1. Use of ConcurrentHashMap 
+2. Use of synchronized block
+
+
+--------------------- Exceptions -------------------
+Exception is a problem that occurs while execution of the program;
+
+Why exception: Lets say If I open 100 files, I will have to check for 100 files that in which file error has occured, if I use exceptions, I'll have to use only
+1 try block and it will give me exact answer to the question;
+
+/*
+This is an example of ERROR not exception;
+Why exceptions ? = While creating objects, if heap memory gets full , it will throw OutOfMemoryException and programmer cannot do anything about it.
+So we use exceptions when we handle situations which cannot be handled normally;
+*/
+
+
+Checked exceptions ;
+These are the exceptions that cannot be ignored at compile time.
+Example - ArithmeticException Divde by zero
+Example - FileNotFoundException
+
+Runtime/Unchecked exceptions: These are the exceptions which bypass the compilation;
+These exceptions occur while the execution of the program.
+Example - NullPointerException
+
+Throw is used to explicitly throw an exception;
+Throws is used to declare the list of exceptions that a method may throw;
+
+
+-[[[[[[[[[[]]]]]]]]]]
+List<Integer> list = new ArrayList<Integer>();
+if we create another type;
+List<integer> list2 = list
+we can do like this : list2 = list;
+
+but if create ArrayList in this way; ArrayList<Integer> list = new ArrayList<>();
+we wont be able to do : LinkedList<Integer>list2 = list;
+
+
+List<> vs Collection;
+List inteface gives us the option of operating on indexes but collection does not;
+because Collection also has those class which contains indexes too.
+
+
+Use of inner classes -> 
+When we want to logically group data members and classes;
+example : when a class B is used only by class A, we can put the class B inside class A, this will improve readability, improves encapsulation;
+Why static nested class -> when our inner class does not need access to the members of the outer class, make it static. It will take less space.
+Why inner nested class -> when our inner class needs access to members of outer class, make it non-static. It will have access to all members of outer class.
+
+
